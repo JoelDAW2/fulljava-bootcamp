@@ -1,0 +1,20 @@
+CONCEPTOS DE PROGRAMACIÓN QUE DOMINO/QUE HE TOCADO:
+
+He tocado (algunos bastante y otros por encima): HTML, CSS, ANGULAR, REACT, VUE, EXPRESS, 
+MONGODB, JS, TS, MySQL, PL/SQL, PHP, JAVA, C#, XAMPP, UNITY, FIREBASE...
+
+- Variables: Hay distintos tipos (int, string, float, boolean...). Permiten guardar datos.
+- Funciones: Estructuras de código que permiten realizar "tareas/funciones". Pueden recibir parámetros y trabajar con ellos.
+- Bucles: Permiten hacer iteraciones para hacer X acciones. Existen varios tipos: While, For, Foreach...
+- Condicionales: Ejecutan una acción dependiendo de si cumplen el condicional o no (if num1 > num ----> print X)
+- JSON: Archivos que almacenan datos en forma de objeto/array.
+- XML: Lenguaje de marcas parecido al HTML. En este caso, te permite crear tus propias etiquetas si no recuerdo mal.
+- HTML: Lenguaje de marcas utilizado para web (<div>, <a>, <p>, <ul>, <li>...)
+- CLASES: Se usan para definir estructuras de codigo o crear instancias. EJEMPLO: Class Car, que contiene los atributos String name, Int price.
+- HERENCIA: Sistema que permite heredar atributos de otras clases. EJEMPLO: Clase padre Vehiculo, Clase hijo Coche. La clase hijo hereda todos los atributos y métodos del padre.
+- SQL: Lenguaje que permite interactuar con una BBDD relacional.
+- QUERIES: Comando que ejecutará la BBDD y devolverá la data solicitada: SELECT * FROM users;.
+- COMMIT: Comando para subir los cambios del proyecto a nuestro proyecto de github.
+- PULL: Comando para descargarnos los posibles cambios de nuestro proyecto de github.
+- REQUEST: Los datos que se envian a la solicitud de un API.
+- API: URL que permite la interacción del FRONTEND con el BACKEND mediante un endpoint. EJEMPLO: https://jsonplaceholder.typicode.com/posts
