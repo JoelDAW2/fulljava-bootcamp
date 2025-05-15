@@ -1,4 +1,5 @@
 package com.example;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Main {
@@ -135,17 +136,71 @@ public class Main {
 
         return password;
    }
-    // EJERCICIO 9
-    public static int extendCalculator(int a, char c)
+    // EJERCICIO 9: <<<<<<<<< NO ESTA ACABADO, FALTA LO DEL MODULO >>>>>>>>>
+    public static double extendCalculator(double a, String c)
     {
         switch(c) {
-            case 'r':
-                return a;
+            case "sqrt":
+                return Math.sqrt(a);
+            case "potencia":
+                double num = 1;
+                for (int i = 0; i < a; i++) {
+                    num = num * a;
+                }
+                return num;
             default:
                 return 0;
         }
     }
+
+    // EJERCICIO 11
+    public static int countWords(String phrase)
+    {
+        int counter = 0;
+        String[] parts = phrase.split(" ");
+        for (int i = 0; i < parts.length; i++) {
+            counter++;
+        }
+        return counter;
+    }
     
+    // EJERCICIO 12
+    public static String replaceChar(String phrase)
+    {
+        String newPhrase = "";
+        for (int i = 0; i < phrase.length(); i++) {
+            if(phrase.charAt(i) == 'a')
+            {
+                newPhrase += "@";
+            }
+            else 
+            {
+                newPhrase += phrase.charAt(i);
+            }     
+        }
+        return newPhrase;
+    }
+
+    // EJERCICIO 13
+    public static void primeNumbersInRange(int a, int b)
+    {
+        ArrayList<Integer> primeNumbers = new ArrayList<Integer>();
+        if(a < b)
+        {
+            for (int i = 2; i < b; i++) {
+                if(b % i != 0)
+                {
+                    primeNumbers.add(i);
+                }
+            }
+        }
+
+        for (int i = 0; i < primeNumbers.size(); i++) {
+            System.out.println("Numero: " + primeNumbers.get(i));
+        }
+    }
+
     public static void main(String[] args) {
+        primeNumbersInRange(2, 30);
     }
 }
