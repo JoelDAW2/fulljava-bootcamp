@@ -1,7 +1,6 @@
 package com.example;
 
 public class exercise2 {
-    // EJERCICIO 2
     public static Boolean palindromWord(String word)
     {   
         String reversedStr = "";
