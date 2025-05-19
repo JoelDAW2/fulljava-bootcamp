@@ -1,7 +1,6 @@
 package com.example;
 
 public class exercise7 {
-    // EJERCICIO 7
     public static int calculator(int a, int b, char c)
     {
             switch(c) {
