@@ -22,10 +22,6 @@ public class Main {
         tasks.add(task3);
         tasks.add(task4);
 
-        /* for (int i = 0; i < tasks.size(); i++) {
-            System.out.println(i + 1 + ". " + tasks.get(i).getTitle() + " --- " + tasks.get(i).getState());
-        } */
-
         Task.listTasks(tasks);
 
         System.out.print("-> Actualizar tarea? [y/n]: ");
@@ -33,8 +29,8 @@ public class Main {
 
         if (r.equalsIgnoreCase("y")) {
             System.out.print("\nSelecciona una tarea: ");
-            int num = s.nextInt() - 1;
-            if(num > 0 && num < tasks.size())
+            int num = s.nextInt();
+            if(num >= 0 && num < tasks.size())
             {
                 System.out.print("\n---> Introduce el estado de la tarea [ 0 (completed) / 1 (uncompleted) ]: ");
                 int newState = s.nextInt();

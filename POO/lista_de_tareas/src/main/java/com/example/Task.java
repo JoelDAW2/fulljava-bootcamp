@@ -56,7 +56,7 @@ public class Task {
     {
         System.out.println();
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println(i + 1 + ". " + tasks.get(i).getTitle() + " --- " + tasks.get(i).getState());
+            System.out.println(i + ". " + tasks.get(i).getTitle() + " --- " + tasks.get(i).getState());
         }
         System.out.println();
     }
