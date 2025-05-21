@@ -28,11 +28,11 @@ public class Main {
         String r = s.nextLine();
 
         if (r.equalsIgnoreCase("y")) {
-            System.out.print("\nSelecciona una tarea: ");
+            System.out.print("\n-> Selecciona una tarea: ");
             int num = s.nextInt();
             if(num >= 0 && num < tasks.size())
             {
-                System.out.print("\n---> Introduce el estado de la tarea [ 0 (completed) / 1 (uncompleted) ]: ");
+                System.out.print("\n-> Introduce el estado de la tarea [ 0 (completed) / 1 (uncompleted) ]: ");
                 int newState = s.nextInt();
                 
                 if (newState == 0) {
@@ -49,6 +49,10 @@ public class Main {
             {
                 System.out.print("-> Tarea no existente. Vuelve a probar.");
             }
-        }   
+        } 
+        else 
+        {
+            System.out.print("-> De acuerdo.");
+        }  
     }
 }
