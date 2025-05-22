@@ -35,9 +35,10 @@ public class Student {
         this.notes = notes;
     }
 
-    public void addNotes(Double note)
+    public void addNotes(Double note, List<Double> studentPersonalNotes)
     {
-        this.notes.add(note);
+        studentPersonalNotes.add(note);
+        System.out.println("\nNota añadida");
     }
 
     public Double calculateAverage()
