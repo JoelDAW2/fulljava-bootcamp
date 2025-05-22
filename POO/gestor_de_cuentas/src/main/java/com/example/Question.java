@@ -18,7 +18,7 @@ public class Question {
         return this.question;
     }
 
-    public String[] getPossbleAnswers()
+    public String[] getPossibleAnswers()
     {
         return this.possibleAnswers;
     }

@@ -9,4 +9,14 @@ public class Survey {
         this.title = title;
         this.questions = questions;
     }
+
+    public String getTitle()
+    {
+        return this.title;
+    }
+
+    public Question[] getQuestions()
+    {
+        return this.questions;
+    }
 }
