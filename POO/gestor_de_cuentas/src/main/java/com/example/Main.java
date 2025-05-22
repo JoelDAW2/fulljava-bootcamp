@@ -49,7 +49,7 @@ public class Main {
         System.out.println("-> Enquesta finalizada");
 
         try {
-            File newTxtFile = new File("C:\\Users\\Mati\\Desktop\\filename.txt");;
+            File newTxtFile = new File("C:\\Users\\Mati\\Desktop\\filename.txt");
             if (newTxtFile.createNewFile()) {
                 System.out.println("Resultados de la encuesta en: " + newTxtFile.getName());
             } 
