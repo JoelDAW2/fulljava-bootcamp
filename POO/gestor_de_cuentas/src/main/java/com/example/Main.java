@@ -58,10 +58,18 @@ public class Main {
                 System.out.println("-> ENCUESTAS DISPONIBLES: ");
                 System.out.println("0. " + survey1.getTitle());
                 System.out.println("1. " + survey2.getTitle());
+                System.out.println("3. Salir");
                 System.out.print("-> Selecciona una opción: ");
                 int surveyMenuOption = menuScanner.nextInt();
-                Survey selectedSurvey = surveysList[surveyMenuOption];
-                generateSurvey(selectedSurvey, newTxtFile);
+                if(surveyMenuOption == 1 || surveyMenuOption == 2)
+                {
+                    Survey selectedSurvey = surveysList[surveyMenuOption];
+                    generateSurvey(selectedSurvey, newTxtFile);
+                }
+                else
+                {
+                    initialMenuPhone = true;    
+                }
             }
             else 
             {
