@@ -26,9 +26,6 @@ public class Main {
         // Lista de encuestas
         Survey[] surveysList = new Survey[] {survey1, survey2};
 
-
-        createJsonFile();
-
         // REGISTRO DEL USUARIO
         boolean userPhone = false;
         Scanner userScanner = new Scanner(System.in);
@@ -61,8 +58,9 @@ public class Main {
                 System.out.println("3. Salir");
                 System.out.print("-> Selecciona una opción: ");
                 int surveyMenuOption = menuScanner.nextInt();
-                if(surveyMenuOption == 1 || surveyMenuOption == 2)
+                if(surveyMenuOption == 0 || surveyMenuOption == 1)
                 {
+                    createJsonFile();
                     Survey selectedSurvey = surveysList[surveyMenuOption];
                     generateSurvey(selectedSurvey, newTxtFile);
                 }
@@ -87,9 +85,9 @@ public class Main {
             // Crear objeto JSON
             JSONObject obj = new JSONObject();
             // Crear key value pairs
-            obj.put("question_1", "0");
-            obj.put("question_2", "0");
-            obj.put("question_3", "0");
+            obj.put("q1", "0");
+            obj.put("q2", "0");
+            obj.put("q3", "0");
     
             FileWriter newJsonFile = new FileWriter("C:\\Users\\Mati\\Desktop\\test.json");
             newJsonFile.write(obj.toJSONString());
