@@ -1,11 +1,16 @@
 package com.example;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner answerScanner = new Scanner(System.in);
+        
+        File newTxtFile = new File("C:\\Users\\Mati\\Desktop\\mySurvey.txt");
+
+        String savingData = "<<< REGISTRO DE LA ENCUESTA >>>\n";
 
         Question q1 = new Question("¿Quién es el rey de la sabana?", new String[] {"León", "Jirafa", "Tortuga"}, 0);
         Question q2 = new Question("¿Quién tiene el cuello más largo?", new String[] {"León", "Jirafa", "Cebra"}, 1);
@@ -15,6 +20,10 @@ public class Main {
 
         Survey survey1 = new Survey("Reino animal", questions);
 
+        System.out.println("<<< RESPONDE LAS ENCUESTAS >>>");
+
+        createFile(newTxtFile);
+
         for (Question question : survey1.getQuestions()) {
             System.out.println(">>> " + question.getQuestion());
             int index2 = 0;
@@ -22,7 +31,9 @@ public class Main {
                 System.out.println("    " + index2 + ". " + answer);
                 index2++;
             }
+
             boolean ans = false;
+            
             do { 
                 System.out.print("   -> ");
                 int answer = answerScanner.nextInt();
@@ -30,13 +41,32 @@ public class Main {
                 if(answer >= 0 && answer <= 2)
                 {
                     ans = true;
+
                     if(answer == question.getAnswer())
                     {
                         System.out.println("\n*** CORRECTO ***\n");
+                        if(newTxtFile.exists())
+                        {
+                            savingData += "PREGUNTA: " + question.getQuestion() + " | RESPUPESTA: " + Integer.toString(answer) + " (Correcto)\n";
+                            //saveData(newTxtFile, savingData);
+                        }
+                        else
+                        {
+                            System.out.println(">>>>>>>>>>>>>>>>> No existe el archivo");
+                        }
                     }
                     else 
                     {
                         System.out.println("\n*** INCORRECTO ***\n");
+                        if(newTxtFile.exists())
+                        {
+                            savingData += "PREGUNTA: " + question.getQuestion() + " | RESPUPESTA: " + Integer.toString(answer) + " (Incorrecto)\n";
+                            //saveData(newTxtFile, savingData);
+                        }
+                        else
+                        {
+                            System.out.println(">>>>>>>>>>>>>>>>> No existe el archivo");
+                        }
                     }
                 }
                 else 
@@ -48,8 +78,13 @@ public class Main {
 
         System.out.println("-> Enquesta finalizada");
 
-        try {
-            File newTxtFile = new File("C:\\Users\\Mati\\Desktop\\filename.txt");
+        if(newTxtFile.exists())
+        {
+            saveData(newTxtFile, savingData);
+        }
+
+        /* try {
+            //File newTxtFile = new File("C:\\Users\\Mati\\Desktop\\filename.txt");
             if (newTxtFile.createNewFile()) {
                 System.out.println("Resultados de la encuesta en: " + newTxtFile.getName());
             } 
@@ -59,6 +94,40 @@ public class Main {
         } catch (IOException e) 
         {
             System.out.println("An error occurred.");
+            e.printStackTrace();
+        } */
+    }
+
+    public static boolean createFile(File txtFile)
+    {
+        try {
+            //File newTxtFile = new File("C:\\Users\\Mati\\Desktop\\filename.txt");
+            if (txtFile.createNewFile()) {
+                System.out.println("Resultados de la encuesta en: " + txtFile.getName());
+            } 
+            else {
+                System.out.println("Archivo existente.");
+            }
+            return true;
+        } catch (IOException e) 
+        {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static void saveData(File txtFile, String data)
+    {
+        try {
+            FileWriter writing = new FileWriter(txtFile);
+            writing.write("\n" + data);
+            writing.close();
+            System.out.println("-> Data almacenada");
+        } 
+        catch (IOException e) 
+        {
+            System.out.println("** ERROR: Fallo al guardar la data **");
             e.printStackTrace();
         }
     }
