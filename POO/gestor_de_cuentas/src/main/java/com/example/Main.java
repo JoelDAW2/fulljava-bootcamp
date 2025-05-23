@@ -6,25 +6,77 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner answerScanner = new Scanner(System.in);
-        
+        // Ruta del txt
         File newTxtFile = new File("C:\\Users\\Mati\\Desktop\\mySurvey.txt");
-
-        String savingData = "<<< REGISTRO DE LA ENCUESTA >>>\n";
-
+        // Encuesta 1
         Question q1 = new Question("¿Quién es el rey de la sabana?", new String[] {"León", "Jirafa", "Tortuga"}, 0);
         Question q2 = new Question("¿Quién tiene el cuello más largo?", new String[] {"León", "Jirafa", "Cebra"}, 1);
         Question q3 = new Question("¿Quién tiene trompa?", new String[] {"Rinoceronte", "Jirafa", "Elefante"}, 2);
-        
         Question[] questions = { q1, q2, q3 };
-
         Survey survey1 = new Survey("Reino animal", questions);
+        // Encuesta 2
+        Question q4 = new Question("¿Cuál de los siguientes animales tiene pico?", new String[] {"Jirafa", "Loro", "Camaleón"}, 1);
+        Question q5 = new Question("¿Cuál de los siguientes animales tiene cola?", new String[] {"Gorila", "Tucán", "Gato"}, 2);
+        Question q6 = new Question("¿Cuál de los siguientes animales vive en el polo norte?", new String[] {"Pinguino", "Zorro", "Tigre"}, 0);
+        Question[] questions2 = { q4, q5, q6 };
+        Survey survey2 = new Survey("Reino animal - 2", questions2);
+        // Lista de encuestas
+        Survey[] surveysList = new Survey[] {survey1, survey2};
+
+
+        // REGISTRO DEL USUARIO
+        boolean userPhone = false;
+        Scanner userScanner = new Scanner(System.in);
+        // Registramos el usuario
+        do { 
+            System.out.println("<<< REGISTRO DE USUARIO >>>");
+            System.out.print("Inserte nombre de usuario: ");
+            String userName = userScanner.nextLine();
+            System.out.print("Inserte contraseña: ");
+            String userPassword = userScanner.nextLine();
+            User newUser = new User(userName, userPassword);
+            if(newUser != null)
+            {
+                userPhone = true;
+            }
+        } while (userPhone == false);
+
+        // Menu de inicio
+        boolean initialMenuPhone = false;
+        Scanner menuScanner = new Scanner(System.in);
+
+        System.out.print("Iniciar encuestas [Yes/No]: ");
+        String menuAnswer = menuScanner.nextLine();
+        do { 
+            if(menuAnswer.equalsIgnoreCase("Yes"))
+            {
+                System.out.println("-> ENCUESTAS DISPONIBLES: ");
+                System.out.println("0. " + survey1.getTitle());
+                System.out.println("1. " + survey2.getTitle());
+                System.out.print("-> Selecciona una opción: ");
+                int surveyMenuOption = menuScanner.nextInt();
+                Survey selectedSurvey = surveysList[surveyMenuOption];
+                generateSurvey(selectedSurvey, newTxtFile);
+            }
+            else 
+            {
+                System.out.println("De acuerdo");
+                initialMenuPhone = true;
+            }
+        } while (initialMenuPhone == false);
+    }
+
+    public static void generateSurvey(Survey survey, File newTxtFile)
+    {
+        Scanner answerScanner = new Scanner(System.in);
+        // Variable para almacenar el resultado de la encuesta
+        String savingData = "<<< REGISTRO DE LA ENCUESTA >>>\n";
 
         System.out.println("<<< RESPONDE LAS ENCUESTAS >>>");
 
         createFile(newTxtFile);
 
-        for (Question question : survey1.getQuestions()) {
+        for (Question question : survey.getQuestions()) {
             System.out.println(">>> " + question.getQuestion());
             int index2 = 0;
             for (String answer : question.getPossibleAnswers()) {
@@ -77,25 +129,21 @@ public class Main {
         }
 
         System.out.println("-> Enquesta finalizada");
-
-        if(newTxtFile.exists())
+        
+        Scanner savingScanner = new Scanner(System.in);
+        System.out.print("-> Desea guardar los resultados? [Yes/No]: ");
+        String savingAskAnswer = savingScanner.nextLine();
+        if(savingAskAnswer.equalsIgnoreCase("Yes"))
         {
-            saveData(newTxtFile, savingData);
+            System.out.print("Nombre del archivo: ");
+            String savedNewFile = savingScanner.nextLine();
+            File newFile = new File("C:\\Users\\Mati\\Desktop\\" + savedNewFile + ".txt");
+            saveData(newFile, savingData);
         }
-
-        /* try {
-            //File newTxtFile = new File("C:\\Users\\Mati\\Desktop\\filename.txt");
-            if (newTxtFile.createNewFile()) {
-                System.out.println("Resultados de la encuesta en: " + newTxtFile.getName());
-            } 
-            else {
-                System.out.println("Archivo existente.");
-            }
-        } catch (IOException e) 
+        else
         {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        } */
+            System.out.println("-> De acuerdo");
+        }
     }
 
     public static boolean createFile(File txtFile)
