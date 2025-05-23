@@ -18,7 +18,7 @@ public class BankAccount {
 
     public void substractBalance(int balance)
     {
-        if ((this.balance - balance) > 0) {
+        if ((this.balance - balance) >= 0) {
             this.balance -= balance;
         }
         else
