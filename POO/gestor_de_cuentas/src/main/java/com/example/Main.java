@@ -3,6 +3,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import org.json.simple.JSONObject;
+
+import com.google.gson.JsonObject;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,6 +26,8 @@ public class Main {
         // Lista de encuestas
         Survey[] surveysList = new Survey[] {survey1, survey2};
 
+
+        createJsonFile();
 
         // REGISTRO DEL USUARIO
         boolean userPhone = false;
@@ -64,6 +69,28 @@ public class Main {
                 initialMenuPhone = true;
             }
         } while (initialMenuPhone == false);
+    }
+
+    public static void createJsonFile()
+    {
+        try 
+        {
+            //String jsonString = "{\"question_1\":\"0\", \"question_2\":\"0\", \"question_3\":\"0\"}";
+            // Crear objeto JSON
+            JSONObject obj = new JSONObject();
+            // Crear key value pairs
+            obj.put("question_1", "0");
+            obj.put("question_2", "0");
+            obj.put("question_3", "0");
+    
+            FileWriter newJsonFile = new FileWriter("C:\\Users\\Mati\\Desktop\\test.json");
+            newJsonFile.write(obj.toJSONString());
+            newJsonFile.close();
+        } catch (Exception e) 
+        {
+            System.out.println("** ERROR: Fallo al guardar la data **");
+            e.printStackTrace();
+        }
     }
 
     public static void generateSurvey(Survey survey, File newTxtFile)
