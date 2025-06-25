@@ -1,0 +1,7 @@
+EJERCICIOS INDICES
+
+1. CREATE INDEX index_tipo_personaje ON personajes (tipo);
+2. CREATE UNIQUE INDEX unique_idx_nombre_reinos ON reinos (nombre);
+3. CREATE INDEX idx_nivel_personaje ON personajes (nivel);
+4. CREATE INDEX idx_nombre_titulo_personajes ON personajes (nombre, titulo);
+5. DROP INDEX idx_nivel_personaje ON personajes;
