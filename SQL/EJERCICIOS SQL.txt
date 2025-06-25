@@ -1,0 +1,38 @@
+EJERCICIOS SELECT SIMPLE
+
+1. select * from personajes where nivel > 10;
+2. select * from personajes where nombre like '%or%';
+3. select * from reinos where región = "Norte" and poblacion > 20000;
+4. select * from personajes where titulo IN ('Hechicera', 'Guerrero');
+5. select * from personajes order by nombre;
+6. select * from reinos where nombre like '%a%';
+7. select count(*) from personajes where tipo = 'Humano';
+8. select distinct región from reinos;
+9. select * from personajes where nivel between 5 and 10;
+10. select * from personajes order by nivel desc limit 3;
+
+EJERCICIOS DE JOIN Y GROUP BY
+
+1. SELECT p.nombre, r.nombre FROM personajes p INNER JOIN reinos r ON p.reinoID=r.reinoid;
+2. SELECT r.nombre, p.nombre FROM reinos r left join personajes p ON r.reinoid = p.reinoID where p.nombre is not null;
+3. select b.nombre, p.nombre from participantesbatalla join batallas b on b.batallaid = participantesbatalla.batallaid join personajes p on p.personajeid = participantesbatalla.personajeid;
+4. select count(*) from personajes group by reinoid;
+5. select tipo, sum(poder) as 'Suma de poder' from artefactosmagicos group by tipo;
+6. select b.nombre, b.fecha, b.resultado, p.nombre from participantesbatalla join batallas b on b.batallaid = participantesbatalla.batallaid join personajes p on p.personajeid = participantesbatalla.personajeid where resultado = 'Victoria';
+7. select tipo, avg(nivel) from personajes group by tipo;
+8. select a.nombre as 'Artefacto magico', p.nombre as 'Dueño' from artefactosmagicos a join personajes p on a.dueñoid = p.personajeid;
+9. select r.nombre as 'Reino' from personajes p join reinos r on p.reinoid = r.reinoid group by p.reinoid having count(p.reinoid) > 3;
+10. select p.nombre as 'Personaje', pb.rol as 'Rol' from participantesbatalla pb join personajes p on pb.personajeid = p.personajeid where pb.batallaid = 1;
+
+EJERCICIOS DE CRUD
+
+1. insert into personajes (nombre, titulo, tipo, nivel, reinoid) values ('Luna', 'Hechicera', 'Humana', 9, (select reinoid from reinos where nombre = 'Dominio de Lunaris'));
+2. insert into reinos (nombre, región, poblacion) values ('Valle Esmeralda', 'Oeste', 65000);
+3. update reinos set poblacion = 60000 where nombre = 'Reino de Eldoria';
+4. update personajes set nivel = 15 where nombre = 'Gorim';
+5. delete from reinos where nombre = 'Principado de Solstheim';
+6. insert into artefactosmagicos (nombre, tipo, poder, dueñoid) values ('Escudo de la Esperanza', 'Escudo', 85, 6);
+7. update artefactosmagicos set dueñoid = 7 where nombre = 'Espada de Fuego';
+8. delete from personajes where nombre = 'Thorvald';
+9. update reinos set región = 'Norte' where nombre = 'Dominio de Lunaris';
+10. insert into participantesbatalla (batallaid, personajeid, rol) values (3, 19, 'Atacante');
