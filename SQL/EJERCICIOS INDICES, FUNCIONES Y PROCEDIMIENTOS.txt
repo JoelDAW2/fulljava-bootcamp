@@ -5,3 +5,47 @@ EJERCICIOS INDICES
 3. CREATE INDEX idx_nivel_personaje ON personajes (nivel);
 4. CREATE INDEX idx_nombre_titulo_personajes ON personajes (nombre, titulo);
 5. DROP INDEX idx_nivel_personaje ON personajes;
+
+EJERCICIOS FUNCIONES
+
+EJ 1. *****
+***********
+DELIMITER //
+CREATE FUNCTION GetKingdomsNameById(reino_id INT) RETURNS varchar(255) READS SQL DATA
+BEGIN
+	DECLARE kingdomsName VARCHAR(255) DEFAULT NULL;
+    SET kingdomsName = NULL;
+    
+	SELECT nombre into kingdomsName FROM reinos WHERE reinoid = reino_id limit 1; 
+	
+    RETURN kingdomsName;
+END //
+DELIMITER ;
+EJ 2. *****
+***********
+DELIMITER //
+CREATE FUNCTION GetAvgLvlByKingdom(kingdom int) RETURNS double READS SQL DATA
+BEGIN
+	DECLARE avgLvl double DEFAULT NULL;
+    SET avgLvl = NULL;
+    
+	select avg(nivel) into avgLvl from personajes where reinoid = kingdom;
+	
+    RETURN avgLvl;
+END //
+DELIMITER ;
+EJ 3. *****
+***********
+DELIMITER //
+CREATE FUNCTION CountCharactersByKingdom(kingdom int) RETURNS int READS SQL DATA
+BEGIN
+	DECLARE totalCharacters int DEFAULT NULL;
+    SET totalCharacters = NULL;
+    
+    SELECT count(*) into totalCharacters from personajes where reinoid = kingdom;
+	
+    RETURN totalCharacters;
+END //
+DELIMITER ;
+EJ 4. *****
+***********
