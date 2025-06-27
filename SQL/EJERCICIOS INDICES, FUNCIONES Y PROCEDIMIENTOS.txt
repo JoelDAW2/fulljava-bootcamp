@@ -123,11 +123,13 @@ select * from reinos;
 CALL InsertKingdom('Dressrosa', 'Sur', 30000);
 EJ 2. *****
 ***********
-CREATE PROCEDURE UpdateCharacterLvl(characterid int)
+DELIMITER //
+CREATE PROCEDURE UpdateCharacterLvl(IN characterid int, IN lvl int)
 BEGIN
-update personajes
-set nivel = nivel + 1
+UPDATE personajes
+set nivel = lvl
 where personajeid = characterid;
 END //
 DELIMITER ;
-CALL UpdateCharacterLvl(1);
+select * from personajes;
+CALL UpdateCharacterLvl(1, 25);
