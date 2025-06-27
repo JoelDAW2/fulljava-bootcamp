@@ -99,3 +99,34 @@ BEGIN
     select avg(nivel) into charactersAvg from personajes where tipo = type;
 	return charactersAvg;
 END
+EJ 8. *****
+***********
+
+
+
+
+EJ 9. *****
+***********
+
+
+EJERCICIOS PROCEDIMIENTOS
+EJ 1. *****
+***********
+DELIMITER //
+CREATE PROCEDURE InsertKingdom()
+BEGIN
+-- Contar el total de personajes del reino especificado usando la variable local
+insert into reinos (nombre, región, poblacion) values ('Gondor', 'Norte', 100000);
+END //
+DELIMITER ;
+CALL InsertKingdom;
+EJ 2. *****
+***********
+CREATE PROCEDURE UpdateCharacterLvl(characterid int)
+BEGIN
+update personajes
+set nivel = nivel + 1
+where personajeid = characterid;
+END //
+DELIMITER ;
+CALL UpdateCharacterLvl(1);
