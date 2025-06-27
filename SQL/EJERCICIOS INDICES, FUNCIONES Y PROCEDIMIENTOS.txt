@@ -49,3 +49,53 @@ END //
 DELIMITER ;
 EJ 4. *****
 ***********
+CREATE FUNCTION GetCharactersArtifactsTotalPower(characterid int) RETURNS int READS SQL DATA
+BEGIN
+	DECLARE totalPower int DEFAULT NULL;
+    SET totalPower = NULL;
+    
+    select sum(poder) into totalPower from artefactosmagicos where dueñoid = characterid;
+	
+    RETURN totalPower;
+END //
+DELIMITER ;
+EJ 5. *****
+***********
+CREATE FUNCTION CheckCharactersLvl(kingdomid int, lvl int) RETURNS int READS SQL DATA
+BEGIN
+	DECLARE totalCharacters int DEFAULT NULL;
+    SET totalCharacters = NULL;
+    
+    select count(*) into totalCharacters from personajes where reinoid = kingdomid and nivel > lvl;
+	
+    IF totalCharacters > 0 THEN
+	  RETURN 0;
+	END IF;
+    RETURN 1;
+END //
+DELIMITER ;
+EJ 6. *****
+***********
+CREATE FUNCTION CheckTitleByLvl(kingdomid int) 
+RETURNS text 
+READS SQL DATA
+BEGIN
+    declare characterTitle text default null;
+    set characterTitle = null;
+    
+    select titulo into characterTitle from personajes where nivel = 
+		(select max(nivel) from personajes where reinoid = kingdomid) and reinoid = kingdomid order by titulo asc limit 1;
+	return characterTitle;
+END
+EJ 7. *****
+***********
+CREATE FUNCTION GetLvlAvgByType(type text) 
+RETURNS double
+READS SQL DATA
+BEGIN
+    declare charactersAvg double default null;
+    set charactersAvg = null;
+    
+    select avg(nivel) into charactersAvg from personajes where tipo = type;
+	return charactersAvg;
+END
