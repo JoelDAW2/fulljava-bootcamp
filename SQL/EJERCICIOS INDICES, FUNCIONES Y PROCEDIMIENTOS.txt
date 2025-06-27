@@ -113,13 +113,14 @@ EJERCICIOS PROCEDIMIENTOS
 EJ 1. *****
 ***********
 DELIMITER //
-CREATE PROCEDURE InsertKingdom()
+CREATE PROCEDURE InsertKingdom(title text, region text, poblation int)
 BEGIN
 -- Contar el total de personajes del reino especificado usando la variable local
-insert into reinos (nombre, región, poblacion) values ('Gondor', 'Norte', 100000);
+insert into reinos (nombre, región, poblacion) values (title, region, poblation);
 END //
 DELIMITER ;
-CALL InsertKingdom;
+select * from reinos;
+CALL InsertKingdom('Dressrosa', 'Sur', 30000);
 EJ 2. *****
 ***********
 CREATE PROCEDURE UpdateCharacterLvl(characterid int)
